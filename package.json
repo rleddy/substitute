@@ -1,0 +1,19 @@
+{
+  "name": "substitute",
+  "version": "1.0.0",
+  "description": "A simple string subsitution module for server side html/svg compositing",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "substitution",
+    "variables",
+    "composite"
+  ],
+  "author": "Richard Leddy",
+  "license": "ISC"
+}

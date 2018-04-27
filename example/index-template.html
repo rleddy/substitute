@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="charset=UTF-8" />
+		<title>${>title|}</title>
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			body { font: 13px Helvetica, Arial; }
+			form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+			form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+			form button { width: 9%; background: ${>whoami?rgb(130, 224, 255) |:| rgb(255, 224, 255) |:| rgb(130, 100, 255)|}; border: none; padding: 10px; }
+			#messages { list-style-type: none; margin: 0; padding: 0; }
+			#messages li { padding: 5px 10px; }
+			#messages li:nth-child(odd) { background: #eee; }
+			</style>
+	</head>
+	<body>
+		
+		${<./body-template.html|}
+		
+	</body>
+	
+	<script language="javascript">
+		
+		window.appVars = {
+			runners : { }
+		};
+		window.fetchSections = "${>subject|}";
+		window.targetDiv = "svgGoesHere-${>subject|}";
+		window.fetchPage = "${>subject|}.svg"
+		window.useFetchSVG = true;
+	</script>
+	
+	<script src="/socket.io/socket.io.js"></script>
+	<script language="javascript" src="jquery-2.1.4.min.js"></script>
+	<script>
+		${<./specialized.js|}
+	</script>
+ </html>
