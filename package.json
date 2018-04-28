@@ -1,5 +1,5 @@
 {
-  "name": "substitute",
+  "name": "copious-substitute",
   "version": "1.0.0",
   "description": "A simple string subsitution module for server side html/svg compositing",
   "main": "index.js",
@@ -15,5 +15,13 @@
     "composite"
   ],
   "author": "Richard Leddy",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rleddy/substitute.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rleddy/substitute/issues"
+  },
+  "homepage": "https://github.com/rleddy/substitute#readme"
 }
