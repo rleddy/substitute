@@ -87,7 +87,7 @@ So, special uses of a string, e.g. capitalization, decorations, etc. will have t
 
 For example, you could say "TitleCaps" : capitalize(myTitle) in the same value object as "title: myTitle. 
 
-In the HTML you could put *{>TitleCaps|}, or in a conditional choice you could put $$TitleCaps. 
+In the HTML you could put ${>TitleCaps|}, or in a conditional choice you could put $$TitleCaps. 
 
 The choice here is to keep the module short, fast, and simple. The module can be further optimised perhaps by taking some ops out of JavaScript, although *JS* is doing very little here and it may already be in a very fast **C** underneath the hood of *JS*.
 

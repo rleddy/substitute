@@ -1,6 +1,6 @@
 {
   "name": "copious-substitute",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple string subsitution module for server side html/svg compositing",
   "main": "index.js",
   "directories": {
