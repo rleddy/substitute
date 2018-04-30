@@ -6,11 +6,20 @@ var fs = require('fs');
 
 const VarStart = "${>";
 const VarEnd = "|}";
+const SourceSymbolStart = "$$";
 const VarFile = "${<"
 const VarChoiceSep = "|:|"
 const MAXSUBFILEDEPTH = 4;
 
 // ---- ---- ---- ----
+
+function source_reference(txt,values) {
+    if ( txt.substr(0,2) == SourceSymbolStart ) {
+        return(values[txt.substr(2)]);
+    }
+    return(txt);
+}
+
 
 module.exports = (subObjectArry,valueObject) => {
     var html = subObjectArry[0].trailer;
@@ -28,6 +37,7 @@ module.exports = (subObjectArry,valueObject) => {
             var ii = replacer.indexer(value);
             if ( (ii < replacer.choices.length) && (ii >= 0) ) {
                 value = replacer.choices[ii];
+                value = source_reference(value,valueObject);
             }
         }
 
@@ -39,6 +49,7 @@ module.exports = (subObjectArry,valueObject) => {
     //
     return(html);
 }
+
 
 
 var gFileDepths = {};
@@ -122,7 +133,6 @@ function normalize_predicate(pk) {
 }
 
 
-
 module.exports.prepare = (htmlString,predicateIndexers) => {
     // Split this string into an array using a variable prefix
     if ( predicateIndexers === undefined ) {
@@ -164,7 +174,7 @@ module.exports.prepare = (htmlString,predicateIndexers) => {
                                                             //
                                                             var replace = pp[1].split(VarChoiceSep);
                                                             vobj.choices = replace.map( txt => {
-                                                                                              return(subfiles(txt.trim()));
+                                                                                              return(txt.trim());
                                                                                           });
                                                             // ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
                                                          } else { // set up a simple replacement
@@ -176,6 +186,4 @@ module.exports.prepare = (htmlString,predicateIndexers) => {
     //
     return(HTMLParts);
 }
-
-
 

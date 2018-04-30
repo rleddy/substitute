@@ -58,7 +58,6 @@ var output = subst(compiledTemplate,values);   // Call the module -- it's ok. Pu
 console.log(output)
 
 ```
-
 That is all there is to it.  It should never really get more complicated. 
 
 Look at example/index-html. To see the variable syntax.
@@ -66,13 +65,38 @@ Here is a brief rundown of it:
 
 ```
 ${>title|}  <!-- in the HTML a variable that gets replaced. ${> starts it |} ends it. -->
-${>whoami?rgb(130, 224, 255) |:| rgb(255, 224, 255) |:| rgb(130, 100, 255)|} <!-- this is a choice - see predicates above -->
+${>whoami?rgb(130, 224, 255) |:| rgb(255, 224, 255) |:| $$cool_color |} <!-- this is a choice - see predicates above -->
+<!-- See that a variable occurs within the condition with a special syntax. $$VarName. VarName will be the key in values -->
 
 ${<./body-template.html|} <!-- this loads a file. -->
- <!-- Inside body-template is a variable declaration. -->
+<!-- Inside body-template is a variable declaration. -->
 ```
 
 As the files are processed first. All the variables are gathered after the files are brought in. 
 
-The condition variables will not process variables within the choices, but files may be loaded. There is no attempt at this time (this version) to process variables within conditions, and the output of such constructs will not be predictable. For most cases this kind of complexity may not be necessary to address. That is because files can be generated ahead of the use the substitution.  In the next version, we can use the file loading process to load more complicated forms by generalizing the notion of a file. (This comment will change as well.)
+The variable prefix **$$** has been decided upon for use in the choices that follow the conditions.
+This syntax allows the variable to be separated from the variable established by the conditional.
+There is no attept to evaluate the variable further. So, this variable syntax indicates a terminal substitution. 
+The value for the variable has to come from a single instance of a variable in the *value* object. 
+
+##Conclusion
+
+That is it. There is virtually no calculation done by this module. Any calculation done to create a variable value has to be identified in the *values* passed to the substitution method, *subst* in the example. 
+
+So, special uses of a string, e.g. capitalization, decorations, etc. will have to be identidied in the *values* with their own keys. 
+
+For example, you could say "TitleCaps" : capitalize(myTitle) in the same value object as "title: myTitle. 
+
+In the HTML you could put *{>TitleCaps|}, or in a conditional choice you could put $$TitleCaps. 
+
+The choice here is to keep the module short, fast, and simple. The module can be further optimised perhaps by taking some ops out of JavaScript, although *JS* is doing very little here and it may already be in a very fast **C** underneath the hood of *JS*.
+
+There may be no argument that the development of the web page is harder. As long as the variables are expressive, the HTML may be easier to read. And, JavaScript can be used to set the values of the variables.
+
+I am going to use this module. I hope you will. There are not likely going to be more features to this module. But, there may be a few improvements which cab be addressed through issues. 
+
+
+
+
+
 
