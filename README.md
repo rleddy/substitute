@@ -2,13 +2,13 @@
 
 A simple node.js module to allow variable subsitution in files.
 
-This might be called a compisiting engine. But, it is less than 200 lines of code. 
+This might be called a compositing engine. But, it is less than 200 lines of code. 
 
 It looks for variables in the text file (especially html files) and puts in values in place the the variables. 
 
 Just like other more extensive packages that do this, there is a special syntax that the module goes looking for. See below. 
 
-The work flow is organized as such: 1) The template strings are scanned to find variables and the file gets segmented into an array of parts keyed by the variables; 2) at any time later, a node.js script using *substitute* may generate a string when the application passes a compiled template (an array of variable positions) and an object/map keyed on the variables with values to put intot them.
+The work flow is organized as such: 1) The template strings are scanned to find variables and the file gets segmented into an array of parts keyed by the variables; 2) at any time later, a node.js script using *substitute* may generate a string when the application passes a compiled template (an array of variable positions) and an object/map keyed on the variables with values to put into them.
 
 There are two methods that correspond to these steps:
 ```
