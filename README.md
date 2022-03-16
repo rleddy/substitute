@@ -18,7 +18,7 @@ subst(parameters) // called subsequently
 
 So, your application can compile a list of templates. And, the call *substitute* many times over with different combinations of templates and value objects/maps. 
 
-*Substitute* handles well secified files names and very simple conditionals. 
+*Substitute* handles well specified file names and very simple conditionals. 
 
 The files are processed before the variables. There is no attempt to create fancier situations where a file is pulled in and conditions get checked for inclusion. Instead, a very simple process of conditions checking allows choices derived from the conditions to pick files that have been previously loaded. 
 
@@ -27,6 +27,7 @@ Files are loaded recursively. There is an attempt to limit the number of times t
 The conditions indicate match functions that take in a string from the value/map object, test it, and then return an index indicating which choice to use. So, the correctness of using this is left up to the program. A list of choices follow the condition, and the index returned by the match functions (implemented by the application) should select one of the conditions [0,n-1].
 
 Here is the code for the test.js example: 
+
 ```
 var subst = require('substitute');  // the module
 var fs = require('fs');
@@ -60,7 +61,7 @@ console.log(output)
 ```
 That is all there is to it.  It should never really get more complicated. 
 
-Look at example/index-html. To see the variable syntax.
+Look at example/index.html. To see the variable syntax.
 Here is a brief rundown of it:
 
 ```
@@ -87,7 +88,7 @@ So, special uses of a string, e.g. capitalization, decorations, etc. will have t
 
 For example, you could say "TitleCaps" : capitalize(myTitle) in the same value object as "title: myTitle. 
 
-In the HTML you could put ${>TitleCaps|}, or in a conditional choice you could put $$TitleCaps. 
+In the HTML you could put \${>TitleCaps|}, or in a conditional choice you could put \$$TitleCaps. 
 
 The choice here is to keep the module short, fast, and simple. The module can be further optimised perhaps by taking some ops out of JavaScript, although *JS* is doing very little here and it may already be in a very fast **C** underneath the hood of *JS*.
 
